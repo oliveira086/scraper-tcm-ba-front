@@ -100,7 +100,8 @@ const CrawlerList = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await editCrawler({
+
+      await editCrawler({
         id: id,
         name: name,
         cidade: cidade,
@@ -114,7 +115,9 @@ const CrawlerList = () => {
         session_token: sessionToken,
         user_session_token: userSessionToken
     });
-      console.log(response)
+
+    window.location.reload();
+      
     } catch (error) {
       console.error(error)
     }
@@ -407,7 +410,7 @@ const CrawlerList = () => {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="p-6 space-y-6">
+              <div className="p-6 space-y-6">
                 {/* Basic Configuration */}
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Configuração Básica</h3>
@@ -418,7 +421,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -432,7 +434,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={cidade}
                         onChange={(e) => setCidade(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -446,7 +447,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={codigoMunicipio}
                         onChange={(e) => setCodigoMunicipio(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -460,7 +460,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={nomeEntidade}
                         onChange={(e) => setNomeEntidade(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -474,7 +473,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={codigoEntidade}
                         onChange={(e) => setCodigoEntidade(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -496,7 +494,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="number"
-                        required
                         value={paginaInicial}
                         onChange={(e) => setPaginaInicial(parseInt(e.target.value))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -509,7 +506,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="number"
-                        required
                         value={paginaFinal}
                         onChange={(e) => setPaginaFinal(parseInt(e.target.value))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -522,7 +518,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="number"
-                        required
                         value={ano}
                         onChange={(e) => setAno(parseInt(e.target.value))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -540,7 +535,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={cookieSession}
                         onChange={(e) => setCookieSession(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -553,7 +547,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={sessionToken}
                         onChange={(e) => setSessionToken(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -566,7 +559,6 @@ const CrawlerList = () => {
                       </label>
                       <input
                         type="text"
-                        required
                         value={userSessionToken}
                         onChange={(e) => setUserSessionToken(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -586,7 +578,7 @@ const CrawlerList = () => {
                   </button>
 
                   <button
-                    type="submit"
+                    onClick={() => handleSubmit()} 
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
                   >
                     <Plus className="h-4 w-4" />
@@ -595,7 +587,7 @@ const CrawlerList = () => {
 
 
                 </div>
-              </form>
+              </div>
             </motion.div>
           </motion.div>
         )}
