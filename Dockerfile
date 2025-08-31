@@ -1,20 +1,14 @@
-# Define a imagem base com Node.js 20
-FROM node:20-alpine AS build
+FROM node:20-alpine
 WORKDIR /app
 
-# Define o diretório de trabalho
-RUN rm -fr package-lock.json
-COPY . .
-# Instala as dependências
+# Keep the lockfile for deterministic installs
+COPY package*.json ./
+RUN npm ci
 
-RUN npm i
-RUN npm run build
-
-# Only copy files required to run the app
+# Copy the rest
 COPY . .
 
-# Expoe a porta padrão do Node.js
+# Vite dev on 0.0.0.0:3000
 EXPOSE 3000
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
 
-# Define o comando de inicialização
-CMD ["npm", "run", "dev"]
